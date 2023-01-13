@@ -1577,7 +1577,7 @@ class PlayState extends MusicBeatState
 				songRatingmiss = 'GFC';
 			if (songMisses > 0 && songMisses < 5)
 				songRatingmiss = 'PG';
-			if (songMisses >= 5 && songMisses < 10)
+			if (songMisses < 5 && songMisses > 10)
 				songRatingmiss = 'OOF';
 			if (songMisses > 20)
 				songRatingmiss = 'Clear';
@@ -1588,7 +1588,7 @@ class PlayState extends MusicBeatState
 				songRating = 'GOOD';
 		}
 
-		if (controls.PAUSE && startedCountdown && canPause)
+		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
 			persistentUpdate = false;
 			persistentDraw = true;
@@ -2078,7 +2078,8 @@ class PlayState extends MusicBeatState
 
 		comboSpr.velocity.x += FlxG.random.int(1, 10);
 		add(rating);
-		add(comboSpr);
+		if (combo > 9)
+			add(comboSpr);
 
 		if (!curStage.startsWith('school'))
 		{
